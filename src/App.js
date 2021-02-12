@@ -15,6 +15,7 @@ const App = () => {
     }
     fetchData()
   }, [forceUpdate])
+  
 
   return (
     <div className="container">
