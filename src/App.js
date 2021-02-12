@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       appAPI.getRandomText(1)
-        .then(response => setFullText(response.data.text))
+        .then(response => setFullText(response.data.text.replace(/ё/, 'е')))
     }
     fetchData()
   }, [forceUpdate])
