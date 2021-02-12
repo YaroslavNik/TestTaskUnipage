@@ -22,7 +22,7 @@ const Statistics = ({data, textLength, stopwatchIsRunnig, resetStopwatch, forceU
 
     return (
         <div className = {s.statistics}>
-            <p>Скорость печати: <b>{stopwatchIsRunnig !== undefined && stopwatch > 0 ? (data.currentLetter / stopwatch * 60).toFixed(0) : 0}</b> св./мин</p>
+            <p>Скорость печати: <b>{stopwatchIsRunnig !== undefined && stopwatch > 0 ? (data.currentLetter / stopwatch * 60).toFixed(0) : 0}</b> зн./мин</p>
             <p>Точность: <b>{getAccurancy() > 0 ? getAccurancy() : 0}%</b></p>
         </div>
     )
