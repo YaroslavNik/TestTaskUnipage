@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import s from './PageExercise.module.sass'
 import { appAPI } from '../../API/API';
 import Statistics from '../../Components/Statistics/Statistics';
+import Navigation from '../../Components/Navigation/Navigation';
 
 const getWrittenText = (index, text, mistake) => {
     let strWritten = text.substr(0, index)
@@ -18,9 +19,10 @@ const getWrittenText = (index, text, mistake) => {
 }
 
 
-const PageExercise = ({fullText}) => {
+const PageExercise = ({fullText, forceUpdate, setForceUpdate}) => {
 
     const [stopwatchIsRunnig, setStopwatchIsRunnig] = useState(undefined)
+    const [resetStopwatch, setResetStopwatch] = useState(false)
     const [currentData, setCurrentData] = useState({
         currentLetter: 0,
         currentMistake: false,
@@ -43,14 +45,29 @@ const PageExercise = ({fullText}) => {
         return () => window.removeEventListener('keydown', handleKey)
     }, [currentData.currentLetter, fullText])
 
+    useEffect(() => {
+        if(resetStopwatch || forceUpdate) {
+            setCurrentData({currentLetter: 0, currentMistake: false, allMistakes: 0})
+            setStopwatchIsRunnig(false)
+            setResetStopwatch(false)
+        }
+    }, [resetStopwatch, forceUpdate])
+
     return (
         <div className = {s.pageExercise}>
             {getWrittenText(currentData.currentLetter, fullText, currentData.currentMistake)}
-            
+
             <Statistics 
                 data = {currentData} 
                 textLength = {fullText.length}
                 stopwatchIsRunnig = {stopwatchIsRunnig}
+                forceUpdate = {forceUpdate}
+                resetStopwatch = {resetStopwatch}
+            />
+
+            <Navigation 
+                setForceUpdate = {setForceUpdate}
+                setResetStopwatch = {setResetStopwatch}
             />
         </div>
     )
