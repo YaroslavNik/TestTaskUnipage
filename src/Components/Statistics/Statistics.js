@@ -18,7 +18,7 @@ const Statistics = ({data, textLength, stopwatchIsRunnig}) => {
 
     return (
         <div className = {s.statistics}>
-            <p>Скорость печати: {(data.currentLetter / stopwatch * 60).toFixed(0)} символов в мин.</p>
+            <p>Скорость печати: {stopwatchIsRunnig !== undefined && stopwatch > 0 ? (data.currentLetter / stopwatch * 60).toFixed(0) : 0} символов в мин.</p>
             <p>Точность: {(100 - data.allMistakes / textLength * 100).toFixed(2)}%</p>
         </div>
     )

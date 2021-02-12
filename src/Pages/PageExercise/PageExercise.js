@@ -18,25 +18,14 @@ const getWrittenText = (index, text, mistake) => {
 }
 
 
-const PageExercise = () => {
+const PageExercise = ({fullText}) => {
 
-    const [fullText, setFullText] = useState('')
-    const [stopwatchIsRunnig, setStopwatchIsRunnig] = useState(true)
+    const [stopwatchIsRunnig, setStopwatchIsRunnig] = useState(undefined)
     const [currentData, setCurrentData] = useState({
         currentLetter: 0,
         currentMistake: false,
         allMistakes: 0,
     })
-
-    useEffect(() => {
-      const fetchData = () => {
-        appAPI.getRandomText(1)
-          .then(response => {
-              setFullText(response.data.text)
-            })
-      }
-      fetchData()
-    }, [])
 
     useEffect(() => {
         const handleKey = (event) => {
@@ -45,6 +34,7 @@ const PageExercise = () => {
                     ?   setCurrentData(prev => ({...prev, currentLetter: prev.currentLetter + 1, currentMistake: false}))
                     :   setCurrentData(prev => ({...prev,  allMistakes: prev.allMistakes + 1, currentMistake: true}))
                 
+                if(currentData.currentLetter === 0) setStopwatchIsRunnig(true)
                 if(currentData.currentLetter === fullText.length - 1) setStopwatchIsRunnig(false)
             }
                 
