@@ -1,0 +1,56 @@
+*,
+*::before, 
+*::after 
+    box-sizing: border-box
+
+input:focus::placeholder, textarea:focus::placeholder
+    color: transparent
+
+body, 
+h1, 
+h2, 
+h3, 
+h4, 
+p, 
+li,
+figure, 
+figcaption, 
+blockquote, 
+dl, 
+dd 
+    margin: 0
+    padding: 0
+ul 
+    margin: 0
+    padding: 0
+
+a 
+    text-decoration: none
+
+li 
+    list-style-type: none
+
+p
+    margin: 0
+input 
+    border: none
+
+input:focus::placeholder, textarea:focus::placeholder
+    color: transparent
+.react-dadata__input:focus
+    box-shadow: none !important
+    border-color: #EF6752 !important
+
+input:focus,
+textarea:focus,
+button:focus,
+button:active,
+select:focus,
+.react-dadata__input:focus
+    outline: none !important
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button 
+  -webkit-appearance: none
+  margin: 0
+
