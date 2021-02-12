@@ -41,7 +41,7 @@ const PageExercise = ({fullText, forceUpdate, setForceUpdate}) => {
             }
                 
         }
-        window.addEventListener('keydown', handleKey)
+        if(currentData.currentLetter < fullText.length) window.addEventListener('keydown', handleKey)
         return () => window.removeEventListener('keydown', handleKey)
     }, [currentData.currentLetter, fullText])
 
